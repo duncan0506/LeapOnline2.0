@@ -3,6 +3,7 @@ package com.peoplecoachingworks.leapstudio20;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,32 @@ import android.view.ViewGroup;
  */
 public class FragmentDashboard extends Fragment {
 
-
-    public FragmentDashboard() {
-        // Required empty public constructor
-    }
-
+    private CardView assessmentCard, ideaCard, linkCard, addCard, wifiCard;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        //Defining cards
+        assessmentCard = view.findViewById(R.id.assessmentCardId);
+        ideaCard = view.findViewById(R.id.ideaCardId);
+        linkCard = view.findViewById(R.id.linkCardId);
+        addCard = view.findViewById(R.id.addCardId);
+        wifiCard = view.findViewById(R.id.wifiCardId);
+
+        //Add onClickListener to the cards
+        /*assessmentCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), Assessment.class);
+                startActivity(i);
+            }
+        }); */
+
+
+        return view;
     }
 
 }
