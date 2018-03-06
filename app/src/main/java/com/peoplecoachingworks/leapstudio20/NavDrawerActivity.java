@@ -101,7 +101,7 @@ public class NavDrawerActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_resources) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_about) {
 
         }
 

@@ -22,16 +22,16 @@
             android:title="Tools" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Community">
         <menu>
             <item
                 android:id="@+id/nav_resources"
                 android:icon="@drawable/ic_library_24dp"
                 android:title="Resources" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_about"
+                android:title="About PCW" />
         </menu>
     </item>
 
