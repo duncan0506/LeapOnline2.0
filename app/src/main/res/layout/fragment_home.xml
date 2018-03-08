@@ -313,6 +313,17 @@
                         android:text="28 Days Left"
                         android:textColor="@android:color/darker_gray" />
 
+                    <TextView
+                        android:id="@+id/comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvDesc"
+                        android:layout_margin="16dp"
+                        android:layout_toEndOf="@+id/tvDate"
+                        android:drawableLeft="@drawable/ic_date_range_black_24dp"
+                        android:text="28 Days Left"
+                        android:textColor="@android:color/darker_gray" />
+
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
