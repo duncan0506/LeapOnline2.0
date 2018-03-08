@@ -41,6 +41,7 @@ public class GoalListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = View.inflate(mContext, R.layout.goal_tips_list, null);
+
         TextView tvGoals = view.findViewById(R.id.tvGAT);
         //Set text for TextView
         tvGoals.setText(mGAT.get(position).getGoals());
