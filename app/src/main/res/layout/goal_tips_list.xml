@@ -3,11 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:orientation="vertical"
-    android:paddingBottom="5dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="5dp">
+    android:orientation="vertical">
 
     <!--TODO: Add tags -->
     <!--TODO: Sort List by Date created, tags, alphabetical order -->
@@ -18,5 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Quotes" />
+        android:text="Quotes"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/black" />
 </LinearLayout>

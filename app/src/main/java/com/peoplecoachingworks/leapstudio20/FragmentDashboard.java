@@ -15,7 +15,7 @@ import android.view.ViewGroup;
  */
 public class FragmentDashboard extends Fragment {
 
-    private CardView assessmentCard, ideaCard, goalCard, addCard, wifiCard;
+    private CardView keyLessonCard, ideaCard, goalCard, addCard, wifiCard;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,7 +24,7 @@ public class FragmentDashboard extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         //Defining cards
-        assessmentCard = view.findViewById(R.id.assessmentCardId);
+        keyLessonCard = view.findViewById(R.id.cardKeyLessonId);
         ideaCard = view.findViewById(R.id.ideaCardId);
         goalCard = view.findViewById(R.id.cardGoalId);
         addCard = view.findViewById(R.id.addCardId);
@@ -38,6 +38,15 @@ public class FragmentDashboard extends Fragment {
                 startActivity(i);
             }
         });
+
+        keyLessonCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), KeyLessonPage.class);
+                startActivity(i);
+            }
+        });
+
 
 
         return view;
