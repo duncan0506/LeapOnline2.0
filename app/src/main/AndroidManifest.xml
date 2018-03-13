@@ -34,7 +34,13 @@
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".KeyLessonPage"
-            android:label="Key Lessons Learned" />
+            android:label="Key Lessons Learned"
+            android:parentActivityName=".NavDrawerActivity" />
+        <activity
+            android:name=".AboutActivity"
+            android:label="About Us"
+            android:parentActivityName=".NavDrawerActivity" />
+
     </application>
 
 </manifest>
