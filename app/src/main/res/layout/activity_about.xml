@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.peoplecoachingworks.leapstudio20.AboutActivity">
 
+
+    <!-- TODO: Edit About Page -->
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
