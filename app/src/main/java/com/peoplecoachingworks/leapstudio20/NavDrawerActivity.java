@@ -38,7 +38,7 @@ public class NavDrawerActivity extends AppCompatActivity
         toggle.syncState();
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame, new FragmentHomeMaster());
+        ft.replace(R.id.content_frame, new FragmentHomeMaster());
         ft.commit();
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -85,7 +85,7 @@ public class NavDrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_home_master) {
             fragment = new FragmentHomeMaster();
         } else if (id == R.id.nav_assessment) {
             fragment = new FragmentAssessment();
@@ -103,7 +103,7 @@ public class NavDrawerActivity extends AppCompatActivity
 
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.frame, fragment);
+            ft.replace(R.id.content_frame, fragment);
             ft.commit();
 
         }

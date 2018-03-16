@@ -7,7 +7,7 @@
     <item android:title="Home">
         <menu>
             <item
-                android:id="@+id/nav_home"
+                android:id="@+id/nav_home_master"
                 android:icon="@drawable/ic_home_black_24dp"
                 android:title="Home" />
         </menu>
@@ -17,7 +17,7 @@
 
     <item
             android:id="@+id/nav_assessment"
-            android:icon="@drawable/ic_assessment_black_24dp"
+        android:icon="@drawable/ic_assignment_black_24dp"
             android:title="Assessment" />
         <item
             android:id="@+id/nav_goal_tips"
