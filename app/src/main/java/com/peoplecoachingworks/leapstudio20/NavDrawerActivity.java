@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class NavDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,18 +34,13 @@ public class NavDrawerActivity extends AppCompatActivity
         navigationView = findViewById(R.id.nav_view);
         setSupportActionBar(toolbar);
 
-        //FragmentHome fragmentHome = new FragmentHome();
-        //FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        //ft.replace(R.id.frame, fragmentHome);
-        //ft.commit();
+        tabLayout = findViewById(R.id.tablayout);
+        viewPager = findViewById(R.id.viewpager);
 
-        //tabLayout = findViewById(R.id.tablayout);
-        //viewPager = findViewById(R.id.viewpager);
+        //tabsPager = new TabPager(getSupportFragmentManager());
 
-        // tabsPager = new TabPager(getSupportFragmentManager());
-
-        // viewPager.setAdapter(tabsPager);
-        // tabLayout.setupWithViewPager(viewPager);
+        //viewPager.setAdapter(tabsPager);
+        //tabLayout.setupWithViewPager(viewPager);
 
 
 
@@ -104,6 +100,7 @@ public class NavDrawerActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             fragment = new FragmentHomeMaster();
+            tabLayout.setVisibility(View.GONE);
         } else if (id == R.id.nav_assessment) {
             fragment = new FragmentAssessment();
         } else if (id == R.id.nav_goal_tips) {
