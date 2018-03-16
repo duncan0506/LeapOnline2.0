@@ -47,8 +47,6 @@ public class FragmentDashboard extends Fragment {
             }
         });
 
-
-
         return view;
     }
 

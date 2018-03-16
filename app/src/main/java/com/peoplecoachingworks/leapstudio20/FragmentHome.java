@@ -14,10 +14,6 @@ import android.view.ViewGroup;
 public class FragmentHome extends Fragment {
 
 
-    public FragmentHome() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

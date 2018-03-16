@@ -4,25 +4,20 @@ package com.peoplecoachingworks.leapstudio20;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 public class NavDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    TabPager tabsPager;
+
     DrawerLayout drawer;
     NavigationView navigationView;
 
@@ -33,14 +28,6 @@ public class NavDrawerActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.nav_view);
         setSupportActionBar(toolbar);
-
-        tabLayout = findViewById(R.id.tablayout);
-        viewPager = findViewById(R.id.viewpager);
-
-        //tabsPager = new TabPager(getSupportFragmentManager());
-
-        //viewPager.setAdapter(tabsPager);
-        //tabLayout.setupWithViewPager(viewPager);
 
 
 
@@ -100,7 +87,6 @@ public class NavDrawerActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             fragment = new FragmentHomeMaster();
-            tabLayout.setVisibility(View.GONE);
         } else if (id == R.id.nav_assessment) {
             fragment = new FragmentAssessment();
         } else if (id == R.id.nav_goal_tips) {

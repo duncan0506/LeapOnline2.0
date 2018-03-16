@@ -16,10 +16,6 @@ import android.view.ViewGroup;
 public class FragmentProfile extends Fragment {
 
 
-    public FragmentProfile() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
