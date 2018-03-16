@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etAddGoal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|left"
+        android:hint="Enter your quote"
+        android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
+        android:lines="10"
+        android:maxLines="15"
+        android:minLines="5" />
+
+    <EditText
+        android:id="@+id/etAddAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etAddGoal"
+        android:hint="Who said it?"
+        android:inputType="textCapWords|textAutoCorrect"
+        android:paddingTop="16dp" />
+
+</RelativeLayout>
