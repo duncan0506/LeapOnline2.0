@@ -1,5 +1,6 @@
 package com.peoplecoachingworks.leapstudio20;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -22,21 +23,30 @@ public class NavDrawerActivity extends AppCompatActivity
     ViewPager viewPager;
     TabPager tabsPager;
     DrawerLayout drawer;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_drawer);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        navigationView = findViewById(R.id.nav_view);
         setSupportActionBar(toolbar);
 
-        tabLayout = findViewById(R.id.tablayout);
-        viewPager = findViewById(R.id.viewpager);
+        //FragmentHome fragmentHome = new FragmentHome();
+        //FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        //ft.replace(R.id.frame, fragmentHome);
+        //ft.commit();
 
-        tabsPager = new TabPager(getSupportFragmentManager());
+        //tabLayout = findViewById(R.id.tablayout);
+        //viewPager = findViewById(R.id.viewpager);
 
-        viewPager.setAdapter(tabsPager);
-        tabLayout.setupWithViewPager(viewPager);
+        // tabsPager = new TabPager(getSupportFragmentManager());
+
+        // viewPager.setAdapter(tabsPager);
+        // tabLayout.setupWithViewPager(viewPager);
+
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -44,8 +54,10 @@ public class NavDrawerActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frame, new FragmentHomeMaster());
+        ft.commit();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -91,8 +103,7 @@ public class NavDrawerActivity extends AppCompatActivity
 
 
         if (id == R.id.nav_home) {
-            startActivity(new Intent(NavDrawerActivity.this, NavDrawerActivity.class));
-            drawer.closeDrawers();
+            fragment = new FragmentHomeMaster();
         } else if (id == R.id.nav_assessment) {
             fragment = new FragmentAssessment();
         } else if (id == R.id.nav_goal_tips) {
@@ -105,7 +116,6 @@ public class NavDrawerActivity extends AppCompatActivity
             fragment = new FragmentResources();
         } else if (id == R.id.nav_about) {
             startActivity(new Intent(NavDrawerActivity.this, AboutActivity.class));
-            drawer.closeDrawers();
         }
 
         if (fragment != null) {
