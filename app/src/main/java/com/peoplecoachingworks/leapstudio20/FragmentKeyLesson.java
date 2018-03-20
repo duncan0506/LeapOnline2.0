@@ -35,21 +35,29 @@ public class FragmentKeyLesson extends Fragment {
             public void onClick(View view) {
 
                 Intent i = new Intent(getActivity(), AddKeyLessonActivity.class);
-
                 startActivity(i);
+                //addFragment();
 
-                /*fragment = new FragmentAddKeyLesson();
-                if (fragment != null) {
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.content_frame, fragment);
-                    ft.commit();
-
-                } */
 
             }
         });
 
         return view;
+    }
+
+    private void addFragment() {
+
+        /*FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        FragmentAddKeyLesson fragmentAddKeyLesson = new FragmentAddKeyLesson();
+        ft.add(R.id.content_frame, fragmentAddKeyLesson);
+        ft.commit(); */
+
+        FragmentAddKeyLesson fragmentAddKeyLesson = new FragmentAddKeyLesson();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_frame, fragmentAddKeyLesson, "findThisFragment")
+                .addToBackStack(null)
+                .commit();
     }
 
 
