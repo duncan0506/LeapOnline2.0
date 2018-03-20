@@ -45,7 +45,7 @@
             android:name=".AddKeyLessonActivity"
             android:label="Add Key Lesson"
             android:parentActivityName=".KeyLessonPage"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
 </manifest>

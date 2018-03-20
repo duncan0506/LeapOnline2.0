@@ -7,9 +7,19 @@
     <item android:title="Home">
         <menu>
             <item
-                android:id="@+id/nav_home_master"
-                android:icon="@drawable/ic_home_black_24dp"
-                android:title="Home" />
+                android:id="@+id/nav_dashboard"
+                android:icon="@drawable/ic_assessment_black_24dp"
+                android:title="Dashboard" />
+
+            <item
+                android:id="@+id/nav_key_lesson"
+                android:icon="@drawable/ic_assignment_turned_in_black_24dp"
+                android:title="Key Lesson" />
+
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_person_24dp"
+                android:title="Profile" />
         </menu>
     </item>
     </group>

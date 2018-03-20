@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,6 +21,9 @@ public class NavDrawerActivity extends AppCompatActivity
 
     DrawerLayout drawer;
     NavigationView navigationView;
+    FragmentManager fragmentManager;
+    FragmentTransaction ft;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,24 +34,25 @@ public class NavDrawerActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        //Add FragmentHomeMaster the first screen
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.content_frame, new FragmentHomeMaster());
+
+        //Add FragmentDashboard the first screen
+        ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.content_frame, new FragmentDashboard());
         ft.commit();
 
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -87,8 +92,12 @@ public class NavDrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
-        if (id == R.id.nav_home_master) {
-            fragment = new FragmentHomeMaster();
+        if (id == R.id.nav_dashboard) {
+            fragment = new FragmentDashboard();
+        } else if (id == R.id.nav_key_lesson) {
+            fragment = new FragmentKeyLesson();
+        } else if (id == R.id.nav_profile) {
+            fragment = new FragmentProfile();
         } else if (id == R.id.nav_assessment) {
             fragment = new FragmentAssessment();
         } else if (id == R.id.nav_goal_tips) {
