@@ -47,12 +47,6 @@ public class FragmentHomeMaster extends Fragment {
     };
 
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        getActivity().setTitle("Home Master"); //Set title for Fragment
-    }
 
     @Nullable
     @Override
@@ -62,6 +56,7 @@ public class FragmentHomeMaster extends Fragment {
         BottomNavigationView navigation = view.findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        //Make Dashboard the main screen of FragmentHomeMaster
         getActivity().setTitle("Dashboard");
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.home_master_frame, new FragmentDashboard());

@@ -31,14 +31,16 @@ public class NavDrawerActivity extends AppCompatActivity
 
 
 
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        //Add FragmentHomeMaster the first screen
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame, new FragmentHomeMaster());
+        ft.add(R.id.content_frame, new FragmentHomeMaster());
         ft.commit();
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -73,7 +75,7 @@ public class NavDrawerActivity extends AppCompatActivity
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
 
