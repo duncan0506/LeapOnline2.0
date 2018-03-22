@@ -56,6 +56,7 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
         return view;
     }
 
+
     @Override
     public void onStart() {
         super.onStart();
@@ -67,14 +68,45 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        // Perform this raw SQL query "SELECT * FROM pets" to get a Cursor that contains all rows from the pets table.
-        Cursor cursor = db.rawQuery("SELECT * FROM " + GoalTipsEntry.TABLE_NAME, null);
+        String[] projection = {
+                GoalTipsEntry._ID,
+                GoalTipsEntry.COLUMN_QUOTE,
+                GoalTipsEntry.COLUMN_AUTHOR
+        };
+
+        Cursor cursor = db.query(
+                GoalTipsEntry.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null);
+
         try {
-            // Display the number of rows in the Cursor
+            //Display database info
+            displayView.setText("The pets table contains " + cursor.getCount() + " pets.\n\n");
+            displayView.append(GoalTipsEntry._ID + " - " +
+                    GoalTipsEntry.COLUMN_QUOTE + " - " +
+                    GoalTipsEntry.COLUMN_AUTHOR + "\n");
 
-            displayView.setText("Number of rows in pets database table: " + cursor.getCount());
+            // Figure out the index of each column
+            int idColumnIndex = cursor.getColumnIndex(GoalTipsEntry._ID);
+            int quoteColumnIndex = cursor.getColumnIndex(GoalTipsEntry.COLUMN_QUOTE);
+            int authorColumnIndex = cursor.getColumnIndex(GoalTipsEntry.COLUMN_AUTHOR);
+
+            // Iterate through all the returned rows in the cursor
+            while (cursor.moveToNext()) {
+                // Use that index to extract the String or Int value of the word at the current row the cursor is on.
+                int currentID = cursor.getInt(idColumnIndex);
+                String currentQuote = cursor.getString(quoteColumnIndex);
+                String currentAuthor = cursor.getString(authorColumnIndex);
+
+                // Display the values from each column of the current row in the cursor in the TextView
+                displayView.append(
+                        ("\n" + currentID + " - " + currentQuote + " - " + currentAuthor));
+            }
         } finally {
-
             cursor.close();
         }
     }

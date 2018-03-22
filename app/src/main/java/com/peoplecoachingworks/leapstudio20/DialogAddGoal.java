@@ -53,6 +53,7 @@ public class DialogAddGoal extends AppCompatDialogFragment {
                 });
         return builder.create();
     }
+    //TODO: Entered data doesn't update unless Fragment is reloaded
 
     @Override
     public void onAttach(Context context) {
