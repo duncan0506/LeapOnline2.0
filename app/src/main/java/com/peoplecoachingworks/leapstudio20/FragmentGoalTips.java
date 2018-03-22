@@ -52,7 +52,7 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
 
         //access database - instantiating subclass of SQLiteOpenHelper
         mDbHelper = new GoalTipsDBHelper(getActivity().getApplicationContext());
-        
+
         return view;
     }
 
