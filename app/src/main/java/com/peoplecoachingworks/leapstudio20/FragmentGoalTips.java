@@ -1,6 +1,8 @@
 package com.peoplecoachingworks.leapstudio20;
 
+import android.content.ContentValues;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -71,16 +73,6 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
                 GoalTipsEntry.COLUMN_AUTHOR
         };
 
-        /*Cursor cursor = db.query(
-                GoalTipsEntry.TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null); */
-
-
         // Query the database from ContentProvider (use getActivity().getContentResolver() for fragment)
         Cursor cursor = getActivity().getContentResolver().query(
                 GoalTipsEntry.CONTENT_URI,
@@ -143,11 +135,26 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_add_dummy_data:
-                //insertGoal();
+                insertGoal();
                 displayDatabaseInfo();
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void insertGoal() {
+        // Create a ContentValues object where column names are the keys,
+        // and Toto's pet attributes are the values.
+        ContentValues values = new ContentValues();
+        values.put(GoalTipsEntry.COLUMN_QUOTE, "Toto");
+        values.put(GoalTipsEntry.COLUMN_AUTHOR, "Terrier");
+
+        // Insert a new row for Toto into the provider using the ContentResolver.
+        // Use the {@link PetEntry#CONTENT_URI} to indicate that we want to insert
+        // into the pets database table.
+        // Receive the new content URI that will allow us to access Toto's data in the future.
+        Uri newUri = getActivity().getContentResolver().insert(GoalTipsEntry.CONTENT_URI, values);
+
     }
 
 }

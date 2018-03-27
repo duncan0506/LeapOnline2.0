@@ -7,6 +7,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.util.Log;
 
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsContract.GoalTipsEntry;
 
@@ -15,17 +16,13 @@ import com.peoplecoachingworks.leapstudio20.Data.GoalTipsContract.GoalTipsEntry;
  */
 public class GoalTipsProvider extends ContentProvider {
 
-    /**
-     * Tag for the log messages
-     */
+    //Tag for the log messages
     public static final String LOG_TAG = GoalTipsProvider.class.getSimpleName();
-    /**
-     * URI matcher code for the content URI for the pets table
-     */
+
+    //URI matcher code for the content URI for the pets table
     private static final int GOAL_TIPS = 100;
-    /**
-     * URI matcher code for the content URI for a single pet in the pets table
-     */
+
+    //URI matcher code for the content URI for a single pet in the pets table
     private static final int GOAL_TIPS_ID = 101;
     /**
      * UriMatcher object to match a content URI to a corresponding code.
@@ -89,12 +86,38 @@ public class GoalTipsProvider extends ContentProvider {
         return cursor;
     }
 
-    /**
-     * Insert new data into the provider with the given ContentValues.
-     */
+    //Insert new data into the provider with the given ContentValues.
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
-        return null;
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case GOAL_TIPS:
+                return insertGoalTip(uri, contentValues);
+            default:
+                throw new IllegalArgumentException("Insertion is not supported for " + uri);
+        }
+    }
+
+    /**
+     * Insert a pet into the database with the given content values. Return the new content URI
+     * for that specific row in the database.
+     */
+    private Uri insertGoalTip(Uri uri, ContentValues values) {
+
+        // Get writeable database
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Insert the new pet with the given values
+        long id = database.insert(GoalTipsEntry.TABLE_NAME, null, values);
+        // If the ID is -1, then the insertion failed. Log an error and return null.
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+
+        // Once we know the ID of the new row in the table,
+        // return the new URI with the ID appended to the end of it
+        return ContentUris.withAppendedId(uri, id);
     }
 
     /**

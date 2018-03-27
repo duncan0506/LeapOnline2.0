@@ -5,18 +5,16 @@ import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsContract.GoalTipsEntry;
-import com.peoplecoachingworks.leapstudio20.Data.GoalTipsDbHelper;
 
 
 public class DialogAddGoal extends AppCompatDialogFragment {
@@ -66,7 +64,7 @@ public class DialogAddGoal extends AppCompatDialogFragment {
         }
     }
 
-    private void insertGoal() {
+    /*private void insertGoal() {
         //Read from input
         quoteString = etAddGoal.getText().toString().trim();
         authorString = etAddAuthor.getText().toString().trim();
@@ -93,7 +91,33 @@ public class DialogAddGoal extends AppCompatDialogFragment {
         }
 
         Log.v("Fragment Goal Tips", "new row ID" + newRowId);
+    } */
+
+    private void insertGoal() {
+        // Read from input fields
+        quoteString = etAddGoal.getText().toString().trim();
+        authorString = etAddAuthor.getText().toString().trim();
+
+        // Create a ContentValues object where column names are the keys, and pet attributes from the editor are the values.
+        ContentValues values = new ContentValues();
+        values.put(GoalTipsEntry.COLUMN_QUOTE, quoteString);
+        values.put(GoalTipsEntry.COLUMN_AUTHOR, quoteString);
+
+        // Insert a new pet into the provider, returning the content URI for the new pet.
+        Uri newUri = getActivity().getContentResolver().insert(GoalTipsEntry.CONTENT_URI, values);
+
+        // Show a toast message depending on whether or not the insertion was successful
+        if (newUri == null) {
+            // If the new content URI is null, then there was an error with insertion.
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.dialog_insert_quote_failed),
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            // Otherwise, the insertion was successful and we can display a toast.
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.dialog_insert_quote_successful),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     public interface DialogAddGoalListener {
         void applyText(String quote, String author);

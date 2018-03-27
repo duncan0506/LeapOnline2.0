@@ -5,11 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="dialog_insert_quote_failed">Quote was not added!</string>
+    <string name="dialog_insert_quote_successful">Quote added!</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-
-    <!-- TODO: Remove or change this placeholder text -->
 </resources>
