@@ -19,6 +19,8 @@ public final class GoalTipsContract {
 
     public final static class GoalTipsEntry implements BaseColumns {
 
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_GOAL_TIPS);
+
         public static final String TABLE_NAME = "goal_tips";
         public final static String _ID = BaseColumns._ID;
 

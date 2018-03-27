@@ -1,7 +1,6 @@
 package com.peoplecoachingworks.leapstudio20;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -65,8 +64,6 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
 
     private void displayDatabaseInfo() {
 
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {
                 GoalTipsEntry._ID,
@@ -74,11 +71,20 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
                 GoalTipsEntry.COLUMN_AUTHOR
         };
 
-        Cursor cursor = db.query(
+        /*Cursor cursor = db.query(
                 GoalTipsEntry.TABLE_NAME,
                 projection,
                 null,
                 null,
+                null,
+                null,
+                null); */
+
+
+        // Query the database from ContentProvider (use getActivity().getContentResolver() for fragment)
+        Cursor cursor = getActivity().getContentResolver().query(
+                GoalTipsEntry.CONTENT_URI,
+                projection,
                 null,
                 null,
                 null);
