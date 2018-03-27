@@ -104,6 +104,15 @@ public class GoalTipsProvider extends ContentProvider {
      */
     private Uri insertGoalTip(Uri uri, ContentValues values) {
 
+        // Check that the name is not null
+        String quote = values.getAsString(GoalTipsEntry.COLUMN_QUOTE);
+        if (quote == null) {
+            throw new IllegalArgumentException("Please enter quote");
+        }
+        
+
+        // TODO: Finish sanity checking the rest of the attributes in ContentValues
+
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
