@@ -104,14 +104,13 @@ public class GoalTipsProvider extends ContentProvider {
      */
     private Uri insertGoalTip(Uri uri, ContentValues values) {
 
-        // Check that the name is not null
+        // (Sanity check) Check that the name is not null
+        //TODO:Sanity check not working
         String quote = values.getAsString(GoalTipsEntry.COLUMN_QUOTE);
         if (quote == null) {
             throw new IllegalArgumentException("Please enter quote");
         }
-        
 
-        // TODO: Finish sanity checking the rest of the attributes in ContentValues
 
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
@@ -129,20 +128,71 @@ public class GoalTipsProvider extends ContentProvider {
         return ContentUris.withAppendedId(uri, id);
     }
 
-    /**
-     * Updates the data at the given selection and selection arguments, with the new ContentValues.
-     */
+    //Updates the data at the given selection and selection arguments, with the new ContentValues.
     @Override
-    public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
-        return 0;
+    public int update(Uri uri, ContentValues contentValues, String selection,
+                      String[] selectionArgs) {
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case GOAL_TIPS:
+                return updateGoal(uri, contentValues, selection, selectionArgs);
+            case GOAL_TIPS_ID:
+                // For the PET_ID code, extract out the ID from the URI,
+                // so we know which row to update. Selection will be "_id=?" and selection
+                // arguments will be a String array containing the actual ID.
+                selection = GoalTipsEntry._ID + "=?";
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
+                return updateGoal(uri, contentValues, selection, selectionArgs);
+            default:
+                throw new IllegalArgumentException("Update is not supported for " + uri);
+        }
     }
 
     /**
-     * Delete the data at the given selection and selection arguments.
+     * Update pets in the database with the given content values. Apply the changes to the rows
+     * specified in the selection and selection arguments (which could be 0 or 1 or more pets).
+     * Return the number of rows that were successfully updated.
      */
+    private int updateGoal(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+
+        if (values.containsKey(GoalTipsEntry.COLUMN_QUOTE)) {
+            String name = values.getAsString(GoalTipsEntry.COLUMN_QUOTE);
+            if (name == null) {
+                throw new IllegalArgumentException("Please enter quote");
+            }
+        }
+
+        //IF no values to update, don't try to update database
+        if (values.size() == 0) {
+            return 0;
+        }
+
+        // Otherwise, get writeable database to update the data
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Returns the number of database rows affected by the update statement
+        return database.update(GoalTipsEntry.TABLE_NAME, values, selection, selectionArgs);
+    }
+
+    //Delete the data at the given selection and selection arguments.
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+        // Get writeable database
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case GOAL_TIPS:
+                // Delete all rows that match the selection and selection args
+                return database.delete(GoalTipsEntry.TABLE_NAME, selection, selectionArgs);
+            case GOAL_TIPS_ID:
+                // Delete a single row given by the ID in the URI
+                selection = GoalTipsEntry._ID + "=?";
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
+                return database.delete(GoalTipsEntry.TABLE_NAME, selection, selectionArgs);
+            default:
+                throw new IllegalArgumentException("Deletion is not supported for " + uri);
+        }
     }
 
     /**
