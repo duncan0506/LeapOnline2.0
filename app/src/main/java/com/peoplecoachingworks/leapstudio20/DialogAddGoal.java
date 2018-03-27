@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsContract.GoalTipsEntry;
-import com.peoplecoachingworks.leapstudio20.Data.GoalTipsDBHelper;
+import com.peoplecoachingworks.leapstudio20.Data.GoalTipsDbHelper;
 
 
 public class DialogAddGoal extends AppCompatDialogFragment {
@@ -72,7 +72,7 @@ public class DialogAddGoal extends AppCompatDialogFragment {
         authorString = etAddAuthor.getText().toString().trim();
 
         //Create instance of GoalTipsDbHelper class
-        GoalTipsDBHelper mDbHelper = new GoalTipsDBHelper(getActivity().getApplicationContext());
+        GoalTipsDbHelper mDbHelper = new GoalTipsDbHelper(getActivity().getApplicationContext());
         //Gets data repository into write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 

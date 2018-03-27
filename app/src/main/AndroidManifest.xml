@@ -45,6 +45,11 @@
             android:name=".AddKeyLessonActivity"
             android:label="Add Key Lesson"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <provider
+            android:name=".Data.GoalTipsProvider"
+            android:authorities="com.peoplecoachingworks.leapstudio20"
+            android:exported="false" />
     </application>
 
 </manifest>

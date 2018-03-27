@@ -88,6 +88,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
             <TextView
                 android:id="@+id/tvIntroTitle"
                 android:layout_width="wrap_content"
@@ -105,14 +109,11 @@
                 android:text="PEOPLE COACHING WORKS SDN BHD is a zealous company that has accumulated more than ten years of successful and effective track record in the development of leadership talents in and outside of Malaysia. As a result of its home grown learning and development frameworks, processes and solutions, it stands firmly committed to another ten thriving years of continuous innovations and improvements on experiential and accelerated leader and leadership growth activities. These activities include personal coaching engagements, gamified learning and development, business simulation experiences, project-based learning, interactive role plays, learning circles and cluster work-out sessions. All this is to realise a future filled with enriched experience, enhanced development and enlarged leadership influence for its existing and future clients." />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Find Out More "
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@android:color/holo_purple" />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ListView>
 
 
         </LinearLayout>

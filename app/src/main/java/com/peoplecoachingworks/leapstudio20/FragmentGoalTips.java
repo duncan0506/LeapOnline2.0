@@ -15,14 +15,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsContract.GoalTipsEntry;
-import com.peoplecoachingworks.leapstudio20.Data.GoalTipsDBHelper;
+import com.peoplecoachingworks.leapstudio20.Data.GoalTipsDbHelper;
 
 
 public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAddGoalListener {
 
     private TextView tvQuote, tvAuthor, displayView;
     private FloatingActionButton fabAddGoal;
-    private GoalTipsDBHelper mDbHelper;
+    private GoalTipsDbHelper mDbHelper;
 
 
     @Override
@@ -51,7 +51,7 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
         });
 
         //access database - instantiating subclass of SQLiteOpenHelper
-        mDbHelper = new GoalTipsDBHelper(getActivity().getApplicationContext());
+        mDbHelper = new GoalTipsDbHelper(getActivity().getApplicationContext());
 
         return view;
     }

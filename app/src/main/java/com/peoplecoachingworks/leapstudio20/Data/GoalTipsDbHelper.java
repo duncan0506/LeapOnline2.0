@@ -11,7 +11,7 @@ import com.peoplecoachingworks.leapstudio20.Data.GoalTipsContract.GoalTipsEntry;
  * Created by Duncan on 21-Mar-18.
  */
 
-public class GoalTipsDBHelper extends SQLiteOpenHelper {
+public class GoalTipsDbHelper extends SQLiteOpenHelper {
 
     //Database File name
     private static final String DATABASE_NAME = "shelter.db";
@@ -21,7 +21,7 @@ public class GoalTipsDBHelper extends SQLiteOpenHelper {
 
 
     //Constructor
-    public GoalTipsDBHelper(Context context) {
+    public GoalTipsDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
