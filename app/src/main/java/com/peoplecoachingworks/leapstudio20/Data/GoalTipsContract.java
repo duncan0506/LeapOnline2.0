@@ -1,5 +1,6 @@
 package com.peoplecoachingworks.leapstudio20.Data;
 
+import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -18,6 +19,14 @@ public final class GoalTipsContract {
     public static final String PATH_GOAL_TIPS = "goal_tips";
 
     public final static class GoalTipsEntry implements BaseColumns {
+
+        //The MIME type of the {@link #CONTENT_URI} for a list of pets.
+        public static final String CONTENT_LIST_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_GOAL_TIPS;
+
+        //The MIME type of the {@link #CONTENT_URI} for a single pet.
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_GOAL_TIPS;
 
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_GOAL_TIPS);
 
