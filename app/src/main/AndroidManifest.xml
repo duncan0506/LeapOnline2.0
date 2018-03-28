@@ -29,18 +29,9 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".GoalAchievementPage"
-            android:label="Goal Achievement Tips"
-            android:parentActivityName=".NavDrawerActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".KeyLessonPage"
-            android:label="Key Lessons Learned"
-            android:parentActivityName=".NavDrawerActivity" />
-        <activity
             android:name=".AboutActivity"
-            android:label="About Us"
-            android:parentActivityName=".NavDrawerActivity" />
+            android:label="About Us" />
+        <!--android:parentActivityName=".NavDrawerActivity" -->
         <activity
             android:name=".AddKeyLessonActivity"
             android:label="Add Key Lesson"

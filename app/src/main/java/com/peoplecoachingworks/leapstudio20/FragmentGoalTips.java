@@ -22,7 +22,6 @@ import com.peoplecoachingworks.leapstudio20.Data.GoalTipsContract.GoalTipsEntry;
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsCursorAdapter;
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsDbHelper;
 
-//TODO: Fix quote is same as author, enter quote automatically fills in author textfield with same
 public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAddGoalListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int GOAL_LOADER = 0;
@@ -68,22 +67,6 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
         //There is no goal data yet (until the loader finishes) so pass in null for the Cursor
         mCursorAdapter = new GoalTipsCursorAdapter(getActivity(), null);
         goalListView.setAdapter(mCursorAdapter);
-
-        //Setup item click Listener to open DialogAddGoal when ListView is clicked
-        /* goalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                DialogAddGoal dialogAddGoal = new DialogAddGoal();
-
-                Uri currentGoalUri = ContentUris.withAppendedId(GoalTipsEntry.CONTENT_URI, id);
-                Bundle bundle = new Bundle();
-                bundle.putString(currentGoalUri);
-                dialogAddGoal.setArguments(bundle);
-
-                dialogAddGoal.show(getFragmentManager(), "dialog add goal");
-                dialogAddGoal.setTargetFragment(FragmentGoalTips.this, 1);
-            }
-        });  */
 
         //Kick off CursorLoader
         getLoaderManager().initLoader(GOAL_LOADER, null, this);
