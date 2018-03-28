@@ -6,32 +6,10 @@
     android:background="@color/white"
     tools:context="com.peoplecoachingworks.leapstudio20.FragmentGoalTips">
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ListView
+        android:id="@+id/goal_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/text_view_pet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quote" />
-
-        <TextView
-            android:id="@+id/tvQuote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quote" />
-
-        <TextView
-            android:id="@+id/tvAuthor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="AUthor"
-            android:textColor="@android:color/black" />
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
 
     <android.support.design.widget.FloatingActionButton
@@ -42,7 +20,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add_black_24dp"
-        app:layout_anchor="@+id/linearLayout"
+        app:layout_anchor="@+id/goal_list"
         app:layout_anchorGravity="right|bottom" />
 
 </android.support.design.widget.CoordinatorLayout>

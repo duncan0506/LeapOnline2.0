@@ -13,17 +13,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsContract.GoalTipsEntry;
+import com.peoplecoachingworks.leapstudio20.Data.GoalTipsCursorAdapter;
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsDbHelper;
 
 
 public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAddGoalListener {
 
-    private TextView tvQuote, tvAuthor, displayView;
     private FloatingActionButton fabAddGoal;
     private GoalTipsDbHelper mDbHelper;
+    private ListView goalListView;
 
 
     @Override
@@ -39,10 +40,9 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_goal_tips, container, false);
 
-        tvQuote = view.findViewById(R.id.tvQuote);
-        tvAuthor = view.findViewById(R.id.tvAuthor);
         fabAddGoal = view.findViewById(R.id.fabAddGoal);
-        displayView = view.findViewById(R.id.text_view_pet);
+        goalListView = view.findViewById(R.id.goal_list);
+
 
         fabAddGoal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,32 +81,8 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
                 null,
                 null);
 
-        try {
-            //Display database info
-            displayView.setText("The pets table contains " + cursor.getCount() + " pets.\n\n");
-            displayView.append(GoalTipsEntry._ID + " - " +
-                    GoalTipsEntry.COLUMN_QUOTE + " - " +
-                    GoalTipsEntry.COLUMN_AUTHOR + "\n");
-
-            // Figure out the index of each column
-            int idColumnIndex = cursor.getColumnIndex(GoalTipsEntry._ID);
-            int quoteColumnIndex = cursor.getColumnIndex(GoalTipsEntry.COLUMN_QUOTE);
-            int authorColumnIndex = cursor.getColumnIndex(GoalTipsEntry.COLUMN_AUTHOR);
-
-            // Iterate through all the returned rows in the cursor
-            while (cursor.moveToNext()) {
-                // Use that index to extract the String or Int value of the word at the current row the cursor is on.
-                int currentID = cursor.getInt(idColumnIndex);
-                String currentQuote = cursor.getString(quoteColumnIndex);
-                String currentAuthor = cursor.getString(authorColumnIndex);
-
-                // Display the values from each column of the current row in the cursor in the TextView
-                displayView.append(
-                        ("\n" + currentID + " - " + currentQuote + " - " + currentAuthor));
-            }
-        } finally {
-            cursor.close();
-        }
+        GoalTipsCursorAdapter adapter = new GoalTipsCursorAdapter(getActivity(), cursor);
+        goalListView.setAdapter(adapter);
     }
 
 
@@ -118,8 +94,7 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
 
     @Override
     public void applyText(String quote, String author) {
-        tvQuote.setText(quote);
-        tvAuthor.setText(author);
+
     }
 
 

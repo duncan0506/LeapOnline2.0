@@ -64,34 +64,6 @@ public class DialogAddGoal extends AppCompatDialogFragment {
         }
     }
 
-    /*private void insertGoal() {
-        //Read from input
-        quoteString = etAddGoal.getText().toString().trim();
-        authorString = etAddAuthor.getText().toString().trim();
-
-        //Create instance of GoalTipsDbHelper class
-        GoalTipsDbHelper mDbHelper = new GoalTipsDbHelper(getActivity().getApplicationContext());
-        //Gets data repository into write mode
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
-        //Get text from TextView
-
-        //Create map of values, column name are keys
-        ContentValues values = new ContentValues();
-        //Enter text into db
-        values.put(GoalTipsEntry.COLUMN_QUOTE, quoteString);
-        values.put(GoalTipsEntry.COLUMN_AUTHOR, authorString);
-
-        long newRowId = db.insert(GoalTipsEntry.TABLE_NAME, null, values);
-
-        if (newRowId == -1) {
-            Toast.makeText(getActivity().getApplicationContext(), "Error saving", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getActivity().getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-        }
-
-        Log.v("Fragment Goal Tips", "new row ID" + newRowId);
-    } */
 
     private void insertGoal() {
         // Read from input fields
