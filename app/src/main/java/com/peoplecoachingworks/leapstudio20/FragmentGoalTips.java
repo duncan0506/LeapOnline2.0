@@ -69,6 +69,22 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
         mCursorAdapter = new GoalTipsCursorAdapter(getActivity(), null);
         goalListView.setAdapter(mCursorAdapter);
 
+        //Setup item click Listener to open DialogAddGoal when ListView is clicked
+        /* goalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                DialogAddGoal dialogAddGoal = new DialogAddGoal();
+
+                Uri currentGoalUri = ContentUris.withAppendedId(GoalTipsEntry.CONTENT_URI, id);
+                Bundle bundle = new Bundle();
+                bundle.putString(currentGoalUri);
+                dialogAddGoal.setArguments(bundle);
+
+                dialogAddGoal.show(getFragmentManager(), "dialog add goal");
+                dialogAddGoal.setTargetFragment(FragmentGoalTips.this, 1);
+            }
+        });  */
+
         //Kick off CursorLoader
         getLoaderManager().initLoader(GOAL_LOADER, null, this);
         return view;

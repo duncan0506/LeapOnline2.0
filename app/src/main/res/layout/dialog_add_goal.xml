@@ -5,7 +5,7 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/etAddGoal"
+        android:id="@+id/etAddQuote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="top|left"
@@ -19,7 +19,7 @@
         android:id="@+id/etAddAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etAddGoal"
+        android:layout_below="@+id/etAddQuote"
         android:hint="Who said it?"
         android:inputType="textCapWords|textAutoCorrect"
         android:paddingTop="16dp" />

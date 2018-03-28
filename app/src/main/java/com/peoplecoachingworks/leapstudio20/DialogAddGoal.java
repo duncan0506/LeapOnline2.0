@@ -19,7 +19,7 @@ import com.peoplecoachingworks.leapstudio20.Data.GoalTipsContract.GoalTipsEntry;
 
 public class DialogAddGoal extends AppCompatDialogFragment {
     String quoteString, authorString;
-    private EditText etAddGoal, etAddAuthor;
+    private EditText etAddQuote, etAddAuthor;
     private DialogAddGoalListener listener;
 
     @Override
@@ -29,7 +29,7 @@ public class DialogAddGoal extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_add_goal, null);
 
-        etAddGoal = view.findViewById(R.id.etAddGoal);
+        etAddQuote = view.findViewById(R.id.etAddQuote);
         etAddAuthor = view.findViewById(R.id.etAddAuthor);
 
         builder.setView(view)
@@ -67,13 +67,18 @@ public class DialogAddGoal extends AppCompatDialogFragment {
 
     private void insertGoal() {
         // Read from input fields
-        quoteString = etAddGoal.getText().toString().trim();
+        quoteString = etAddQuote.getText().toString().trim();
         authorString = etAddAuthor.getText().toString().trim();
 
         // Create a ContentValues object where column names are the keys, and pet attributes from the editor are the values.
         ContentValues values = new ContentValues();
         values.put(GoalTipsEntry.COLUMN_QUOTE, quoteString);
-        values.put(GoalTipsEntry.COLUMN_AUTHOR, quoteString);
+        values.put(GoalTipsEntry.COLUMN_AUTHOR, authorString);
+
+        /*Dialog dialogAddGoal = getDialog();
+        Uri currentGoalUri = dialogAddGoal.getData();*/
+
+
 
         // Insert a new pet into the provider, returning the content URI for the new pet.
         Uri newUri = getActivity().getContentResolver().insert(GoalTipsEntry.CONTENT_URI, values);
