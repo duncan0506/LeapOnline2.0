@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,7 +23,11 @@ import com.peoplecoachingworks.leapstudio20.Data.GoalTipsCursorAdapter;
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsDbHelper;
 
 //TODO: Fix quote is same as author, enter quote automatically fills in author textfield with same
-public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAddGoalListener {
+public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAddGoalListener, LoaderManager.LoaderCallbacks<Cursor> {
+
+    private static final int GOAL_LOADER = 0;
+
+    GoalTipsCursorAdapter mCursorAdapter;
 
     private FloatingActionButton fabAddGoal;
     private GoalTipsDbHelper mDbHelper;
@@ -43,7 +50,6 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
         fabAddGoal = view.findViewById(R.id.fabAddGoal);
         goalListView = view.findViewById(R.id.goal_list);
 
-
         fabAddGoal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,41 +60,19 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
         //access database - instantiating subclass of SQLiteOpenHelper
         mDbHelper = new GoalTipsDbHelper(getActivity().getApplicationContext());
 
-        // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
+        // Find and set EmptyView on the ListView, so that it only shows when the list has 0 items.
         View emptyView = view.findViewById(R.id.empty_view);
         goalListView.setEmptyView(emptyView);
 
+        //Setup an Adapter to create list item for each row of the goal data in the Cursor
+        //There is no goal data yet (until the loader finishes) so pass in null for the Cursor
+        mCursorAdapter = new GoalTipsCursorAdapter(getActivity(), null);
+        goalListView.setAdapter(mCursorAdapter);
+
+        //Kick off CursorLoader
+        getLoaderManager().initLoader(GOAL_LOADER, null, this);
         return view;
     }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        displayDatabaseInfo();
-    }
-
-    private void displayDatabaseInfo() {
-
-
-        String[] projection = {
-                GoalTipsEntry._ID,
-                GoalTipsEntry.COLUMN_QUOTE,
-                GoalTipsEntry.COLUMN_AUTHOR
-        };
-
-        // Query the database from ContentProvider (use getActivity().getContentResolver() for fragment)
-        Cursor cursor = getActivity().getContentResolver().query(
-                GoalTipsEntry.CONTENT_URI,
-                projection,
-                null,
-                null,
-                null);
-
-        GoalTipsCursorAdapter adapter = new GoalTipsCursorAdapter(getActivity(), cursor);
-        goalListView.setAdapter(adapter);
-    }
-
 
     public void openDialog() {
         DialogAddGoal dialogAddGoal = new DialogAddGoal();
@@ -115,7 +99,6 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
         switch (item.getItemId()) {
             case R.id.action_add_dummy_data:
                 insertGoal();
-                displayDatabaseInfo();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -136,4 +119,33 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
 
     }
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        String[] projection = {
+                GoalTipsEntry._ID,
+                GoalTipsEntry.COLUMN_QUOTE,
+                GoalTipsEntry.COLUMN_AUTHOR
+        };
+
+        return new CursorLoader(getActivity().getApplicationContext(),
+                GoalTipsEntry.CONTENT_URI,
+                projection,
+                null,
+                null,
+                null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        //Update {@link GoalTipsCursorAdapter} with this new cursor containing updated pet data
+        mCursorAdapter.swapCursor(data);
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        //Callback is called when the data needs to be deleted
+        mCursorAdapter.swapCursor(null);
+
+    }
 }
