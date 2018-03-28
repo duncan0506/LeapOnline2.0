@@ -19,7 +19,7 @@ import com.peoplecoachingworks.leapstudio20.Data.GoalTipsContract.GoalTipsEntry;
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsCursorAdapter;
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsDbHelper;
 
-
+//TODO: Fix quote is same as author, enter quote automatically fills in author textfield with same
 public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAddGoalListener {
 
     private FloatingActionButton fabAddGoal;
@@ -53,6 +53,10 @@ public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAd
 
         //access database - instantiating subclass of SQLiteOpenHelper
         mDbHelper = new GoalTipsDbHelper(getActivity().getApplicationContext());
+
+        // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
+        View emptyView = view.findViewById(R.id.empty_view);
+        goalListView.setEmptyView(emptyView);
 
         return view;
     }
