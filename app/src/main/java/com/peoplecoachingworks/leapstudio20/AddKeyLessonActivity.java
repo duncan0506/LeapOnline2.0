@@ -2,7 +2,10 @@ package com.peoplecoachingworks.leapstudio20;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -18,7 +21,7 @@ import android.widget.TimePicker;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class AddKeyLessonActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddKeyLessonActivity extends AppCompatActivity implements View.OnClickListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     Button btnDatePicker, btnTimePicker;
     int year, month, day, hour, minute;
@@ -142,5 +145,20 @@ public class AddKeyLessonActivity extends AppCompatActivity implements View.OnCl
         }
 
         return true;
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }
