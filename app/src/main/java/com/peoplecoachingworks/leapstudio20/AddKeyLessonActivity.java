@@ -4,11 +4,15 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import java.text.DateFormat;
@@ -21,6 +25,9 @@ public class AddKeyLessonActivity extends AppCompatActivity implements View.OnCl
 
     DatePickerDialog datePickerDialog;
     TimePickerDialog timePickerDialog;
+    private Spinner mPrioritySpinner;
+    private int mPriority = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +39,12 @@ public class AddKeyLessonActivity extends AppCompatActivity implements View.OnCl
         btnDatePicker = findViewById(R.id.btnDatePicker);
         btnTimePicker = findViewById(R.id.btnTimePicker);
 
+        mPrioritySpinner = findViewById(R.id.spinner_priority);
 
         btnDatePicker.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);
 
+        setupSpinner();
 
     }
 
@@ -70,6 +79,47 @@ public class AddKeyLessonActivity extends AppCompatActivity implements View.OnCl
             }, hour, minute, false);
             timePickerDialog.show();
         }
+    }
+
+    /**
+     * Setup the dropdown spinner that allows the user to select the gender of the pet.
+     */
+    private void setupSpinner() {
+        // Create adapter for spinner. The list options are from the String array it will use
+        // the spinner will use the default layout
+        ArrayAdapter genderSpinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.array_priority_options, android.R.layout.simple_spinner_item);
+
+        // Specify dropdown layout style - simple list view with 1 item per line
+        genderSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+
+        // Apply the adapter to the spinner
+        mPrioritySpinner.setAdapter(genderSpinnerAdapter);
+
+        // Set the integer mSelected to the constant values
+        mPrioritySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selection = (String) parent.getItemAtPosition(position);
+                if (!TextUtils.isEmpty(selection)) {
+                    if (selection.equals(getString(R.string.priority_medium))) {
+                        mPriority = 1; // Mid
+                    } else if (selection.equals(getString(R.string.priority_high))) {
+                        mPriority = 2; // High
+                    } else if (selection.equals(getString(R.string.priority_critical))) {
+                        mPriority = 3; // critical
+                    } else {
+                        mPriority = 0; // Low
+                    }
+                }
+            }
+
+            // Because AdapterView is an abstract class, onNothingSelected must be defined
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                mPriority = 0; // Low
+            }
+        });
     }
 
     @Override

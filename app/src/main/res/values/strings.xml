@@ -8,4 +8,9 @@
     <string name="dialog_insert_quote_failed">Quote was not added!</string>
     <string name="dialog_insert_quote_successful">Quote added!</string>
 
+    <string name="priority_low">Low</string>
+    <string name="priority_medium">Medium</string>
+    <string name="priority_high">High</string>
+    <string name="priority_critical">Critical</string>
+
 </resources>

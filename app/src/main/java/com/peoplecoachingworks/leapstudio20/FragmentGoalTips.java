@@ -22,6 +22,8 @@ import com.peoplecoachingworks.leapstudio20.Data.GoalTipsContract.GoalTipsEntry;
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsCursorAdapter;
 import com.peoplecoachingworks.leapstudio20.Data.GoalTipsDbHelper;
 
+//TODO: Add delete Goal List function
+//TODO: Add Edit Goal list function
 public class FragmentGoalTips extends Fragment implements DialogAddGoal.DialogAddGoalListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int GOAL_LOADER = 0;
