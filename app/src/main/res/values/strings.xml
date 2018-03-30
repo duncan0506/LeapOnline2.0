@@ -9,13 +9,9 @@
     <string name="dialog_insert_quote_successful">Quote added!</string>
 
     <string name="priority_low">Low</string>
-    <string name="priority_medium">Medium</string>
+    <string name="priority_mid">Medium</string>
     <string name="priority_high">High</string>
     <string name="priority_critical">Critical</string>
-    <string name="addKeyLesson_activity_title_add_key_lesson">Add Key Lesson</string>
-    <string name="addKeyLesson_activity_title_edit_key_lesson">Edit Key Lesson</string>
-    <string name="error">Error</string>
-    <string name="success">Success</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 
