@@ -96,6 +96,8 @@ public class NavDrawerActivity extends AppCompatActivity
             fragment = new FragmentDashboard();
         } else if (id == R.id.nav_key_lesson) {
             fragment = new FragmentKeyLesson();
+        } else if (id == R.id.nav_key_lesson2) {
+            fragment = new FragmentKeyLesson2();
         } else if (id == R.id.nav_profile) {
             fragment = new FragmentProfile();
         } else if (id == R.id.nav_assessment) {

@@ -31,7 +31,7 @@
         <activity
             android:name=".AboutActivity"
             android:label="About Us" />
-        <!--android:parentActivityName=".NavDrawerActivity" -->
+        <!-- android:parentActivityName=".NavDrawerActivity" -->
         <activity
             android:name=".AddKeyLessonActivity"
             android:label="Add Key Lesson"
@@ -41,6 +41,8 @@
             android:name=".Data.GoalTipsProvider"
             android:authorities="com.peoplecoachingworks.leapstudio20"
             android:exported="false" />
+
+        <activity android:name=".AddKeyLesson2Activity"></activity>
     </application>
 
 </manifest>

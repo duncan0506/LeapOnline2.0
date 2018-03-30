@@ -95,7 +95,7 @@ public class FragmentAddKeyLesson extends Fragment {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_done) {
+        if (id == R.id.action_save) {
             return true;
         }
 

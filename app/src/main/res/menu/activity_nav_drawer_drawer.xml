@@ -17,6 +17,11 @@
                 android:title="Key Lesson" />
 
             <item
+                android:id="@+id/nav_key_lesson2"
+                android:icon="@drawable/ic_assignment_turned_in_black_24dp"
+                android:title="Key Lesson 2" />
+
+            <item
                 android:id="@+id/nav_profile"
                 android:icon="@drawable/ic_person_24dp"
                 android:title="Profile" />
