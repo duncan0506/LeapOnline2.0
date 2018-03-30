@@ -42,7 +42,6 @@
             android:authorities="com.peoplecoachingworks.leapstudio20"
             android:exported="false" />
 
-        <activity android:name=".AddKeyLesson2Activity"></activity>
     </application>
 
 </manifest>
